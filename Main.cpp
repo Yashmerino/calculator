@@ -17,8 +17,8 @@ int main()
     int pass = 0; //Vars
     int resultOutPut = 0;
     char operation = ' ';
-    std::string num1 = " ";
-    std::string num2 = " ";
+    std::string num1 = "";
+    std::string num2 = "";
 
     sf::RenderWindow window(sf::VideoMode(240, 300), "Calculator", sf::Style::Default | sf::Style::Close); //Creating a window
     sf::RectangleShape screenCalc; //Creating a shape
@@ -86,7 +86,7 @@ int main()
     resultSF.setCharacterSize(24);
     resultSF.setString("");
     resultSF.setFont(font);
-    resultSF.setPosition(6.f, 0.f);
+    resultSF.setPosition(0.f, 0.f);
     num1SF.setFont(font);
     num1SF.setFillColor(sf::Color::Black);
     num1SF.setCharacterSize(24);
@@ -111,10 +111,11 @@ int main()
                     if (CheckPressedButton(number0S, window)) {
                         resultOutPut = 0;
                         resultSF.setString("");
-                        if (pass == 0)
+                        if (pass == 0 && num1 != "")
                             num1 = num1 + "0";
-                        else
+                        else if (pass == 1 && num2 != "")
                             num2 = num2 + "0";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number1S, window)) {
                         resultOutPut = 0;
@@ -123,6 +124,7 @@ int main()
                             num1 = num1 + "1";
                         else
                             num2 = num2 + "1";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number2S, window)) {
                         resultOutPut = 0;
@@ -131,6 +133,7 @@ int main()
                             num1 = num1 + "2";
                         else
                             num2 = num2 + "2";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number3S, window)) {
                         resultOutPut = 0;
@@ -139,6 +142,7 @@ int main()
                             num1 = num1 + "3";
                         else
                             num2 = num2 + "3";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number4S, window)) {
                         resultOutPut = 0;
@@ -147,6 +151,7 @@ int main()
                             num1 = num1 + "4";
                         else
                             num2 = num2 + "4";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number5S, window)) {
                         resultOutPut = 0;
@@ -155,6 +160,7 @@ int main()
                             num1 = num1 + "5";
                         else
                             num2 = num2 + "5";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number6S, window)) {
                         resultOutPut = 0;
@@ -163,6 +169,7 @@ int main()
                             num1 = num1 + "6";
                         else
                             num2 = num2 + "6";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number7S, window)) {
                         resultOutPut = 0;
@@ -171,6 +178,7 @@ int main()
                             num1 = num1 + "7";
                         else
                             num2 = num2 + "7";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number8S, window)) {
                         resultOutPut = 0;
@@ -179,6 +187,7 @@ int main()
                             num1 = num1 + "8";
                         else
                             num2 = num2 + "8";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(number9S, window)) {
                         resultOutPut = 0;
@@ -187,40 +196,45 @@ int main()
                             num1 = num1 + "9";
                         else
                             num2 = num2 + "9";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(plusS, window)) {
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
                         operation = '+';
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(minusS, window)) {
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
                         operation = '-';
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(divideS, window)) {
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
                         operation = '/';
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(multiplicationS, window)) {
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
                         operation = '*';
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(resultS, window)) {
-                        if (num1 == " " && num2 == " ") {
+                        if (num1 == " " && num2 == "") {
                             num1 = "0";
                             num2 = "0";
                         }
-                        if (num1 == " " || num2 == " ") {
-                            if (num1 == " ")
+                        if (num1 == " " || num2 == "") {
+                            if (num1 == "")
                                 num1 = "0";
-                            if (num2 == " ")
+                            if (num2 == "")
                                 num2 = "0";
                         }
                         switch (operation) {
@@ -237,6 +251,7 @@ int main()
                             resultOutPut = std::stoi(num1) * std::stoi(num2);
                             break;
                         }
+                        std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
                         resultSF.setString(std::to_string(resultOutPut));
                         pass = 0;
                         num1 = " ";
@@ -248,10 +263,11 @@ int main()
                 if (evnt.key.code == sf::Keyboard::Num0 || evnt.key.code == sf::Keyboard::Numpad0) {
                     resultOutPut = 0;
                     resultSF.setString("");
-                    if (pass == 0)
+                    if (pass == 0 && num1 != "")
                         num1 = num1 + "0";
-                    else
+                    else if (pass == 1 && num2 != "")
                         num2 = num2 + "0";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num1 || evnt.key.code == sf::Keyboard::Numpad1) {
                     resultOutPut = 0;
@@ -260,6 +276,7 @@ int main()
                         num1 = num1 + "1";
                     else
                         num2 = num2 + "1";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num2 || evnt.key.code == sf::Keyboard::Numpad2) {
                     resultOutPut = 0;
@@ -268,6 +285,7 @@ int main()
                         num1 = num1 + "2";
                     else
                         num2 = num2 + "2";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num3 || evnt.key.code == sf::Keyboard::Numpad3) {
                     resultOutPut = 0;
@@ -276,6 +294,7 @@ int main()
                         num1 = num1 + "3";
                     else
                         num2 = num2 + "3";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num4 || evnt.key.code == sf::Keyboard::Numpad4) {
                     resultOutPut = 0;
@@ -284,6 +303,7 @@ int main()
                         num1 = num1 + "4";
                     else
                         num2 = num2 + "4";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num5 || evnt.key.code == sf::Keyboard::Numpad5) {
                     resultOutPut = 0;
@@ -292,6 +312,7 @@ int main()
                         num1 = num1 + "5";
                     else
                         num2 = num2 + "5";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num6 || evnt.key.code == sf::Keyboard::Numpad6) {
                     resultOutPut = 0;
@@ -300,6 +321,7 @@ int main()
                         num1 = num1 + "6";
                     else
                         num2 = num2 + "6";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num7 || evnt.key.code == sf::Keyboard::Numpad7) {
                     resultOutPut = 0;
@@ -308,6 +330,7 @@ int main()
                         num1 = num1 + "7";
                     else
                         num2 = num2 + "7";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num8 || evnt.key.code == sf::Keyboard::Numpad8) {
                     resultOutPut = 0;
@@ -316,6 +339,7 @@ int main()
                         num1 = num1 + "8";
                     else
                         num2 = num2 + "8";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Num9 || evnt.key.code == sf::Keyboard::Numpad9) {
                     resultOutPut = 0;
@@ -324,40 +348,45 @@ int main()
                         num1 = num1 + "9";
                     else
                         num2 = num2 + "9";
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Add) {
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
                     operation = '+';
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Subtract) {
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
                     operation = '-';
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Divide) {
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
                     operation = '/';
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Multiply) {
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
                     operation = '*';
+                    std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Equal || evnt.key.code == sf::Keyboard::Enter) {
-                    if (num1 == " " && num2 == " ") {
+                    if (num1 == "" && num2 == "") {
                         num1 = "0";
                         num2 = "0";
                     }
-                    if (num1 == " " || num2 == " ") {
-                        if (num1 == " ")
+                    if (num1 == "" || num2 == "") {
+                        if (num1 == "")
                             num1 = "0";
-                        if (num2 == " ")
+                        if (num2 == "")
                             num2 = "0";
                     }
                     switch (operation) {
@@ -374,10 +403,11 @@ int main()
                         resultOutPut = std::stoi(num1) * std::stoi(num2);
                         break;
                     }
+                    std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
                     resultSF.setString(std::to_string(resultOutPut));
                     pass = 0;
-                    num1 = " ";
-                    num2 = " ";
+                    num1 = "";
+                    num2 = "";
                     operation = ' ';
                 }
             }
@@ -388,10 +418,10 @@ int main()
             operationSF.setString(operation);
             operationSF.setPosition(num1SF.getLocalBounds().width + 10.f, 0.f);
 
-            window.clear(sf::Color::White);
+            window.clear(sf::Color::White); //Drawing the sprites
             window.draw(screenCalc);
             window.draw(backgroundButtons);
-            window.draw(number0S); //Drawing the sprites
+            window.draw(number0S); 
             window.draw(number1S);
             window.draw(number2S);
             window.draw(number3S);
