@@ -237,22 +237,38 @@ int main()
                             if (num2 == "")
                                 num2 = "0";
                         }
-                        switch (operation) {
-                        case '+':
-                            resultOutPut = std::stof(num1) + std::stof(num2);
-                            break;
-                        case '-':
-                            resultOutPut = std::stof(num1) - std::stof(num2);
-                            break;
-                        case '/':
-                            resultOutPut = std::stof(num1) / std::stof(num2);
-                            break;
-                        case '*':
-                            resultOutPut = std::stof(num1) * std::stof(num2);
-                            break;
+
+                        try {
+                            switch (operation) {
+                            case '+':
+                                resultOutPut = std::stof(num1) + std::stof(num2);
+                                break;
+                            case '-':
+                                resultOutPut = std::stof(num1) - std::stof(num2);
+                                break;
+                            case '/':
+                                resultOutPut = std::stof(num1) / std::stof(num2);
+                                break;
+                            case '*':
+                                resultOutPut = std::stof(num1) * std::stof(num2);
+                                break;
+                            }
                         }
+                        catch (std::out_of_range& error) {
+                            resultSF.setString("ERROR");
+                        }
+
                         std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
-                        resultSF.setString(std::to_string(resultOutPut));
+                        if (modf(resultOutPut, &temp) == 0) {
+                            if (resultSF.getString() != "ERROR") {
+                                resultSF.setString(std::to_string((int)resultOutPut));
+                            }
+                        }
+                        else {
+                            if (resultSF.getString() != "ERROR") {
+                                resultSF.setString(std::to_string(resultOutPut));
+                            }
+                        }
                         pass = 0;
                         num1 = "";
                         num2 = "";
@@ -306,7 +322,7 @@ int main()
                     PressOperator(divideS, window, '/');
                 }
                 if (evnt.key.code == sf::Keyboard::Multiply) {
-                    PressOperator(multiplicationS, window, '+');
+                    PressOperator(multiplicationS, window, '*');
                 }
                 if (evnt.key.code == sf::Keyboard::Period) {
                     resultOutPut = 0;
@@ -333,25 +349,36 @@ int main()
                         if (num2 == "")
                             num2 = "0";
                     }
-                    switch (operation) {
-                    case '+':
-                        resultOutPut = std::stof(num1) + std::stof(num2);
-                        break;
-                    case '-':
-                        resultOutPut = std::stof(num1) - std::stof(num2);
-                        break;
-                    case '/':
-                        resultOutPut = std::stof(num1) / std::stof(num2);
-                        break;
-                    case '*':
-                        resultOutPut = std::stof(num1) * std::stof(num2);
-                        break;
+
+                    try {
+                        switch (operation) {
+                        case '+':
+                            resultOutPut = std::stof(num1) + std::stof(num2);
+                            break;
+                        case '-':
+                            resultOutPut = std::stof(num1) - std::stof(num2);
+                            break;
+                        case '/':
+                            resultOutPut = std::stof(num1) / std::stof(num2);
+                            break;
+                        case '*':
+                            resultOutPut = std::stof(num1) * std::stof(num2);
+                            break;
+                        }
                     }
+                    catch(std::out_of_range& error){
+                        resultSF.setString("ERROR");
+                    }
+
                     if (modf(resultOutPut, &temp) == 0) {
-                        resultSF.setString(std::to_string((int)resultOutPut));
+                        if (resultSF.getString() != "ERROR") {
+                            resultSF.setString(std::to_string((int)resultOutPut));
+                        }
                     }
                     else {
-                        resultSF.setString(std::to_string(resultOutPut));
+                        if (resultSF.getString() != "ERROR") {
+                            resultSF.setString(std::to_string(resultOutPut));
+                        }
                     }
 
                     std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
