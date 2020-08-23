@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <cmath>
 
 bool CheckPressedButton(sf::Sprite& sprite, sf::RenderWindow& window) { //Getting mouse position converted into world coords
         sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window)); 
@@ -15,7 +16,9 @@ bool CheckPressedButton(sf::Sprite& sprite, sf::RenderWindow& window) { //Gettin
 int main()
 {
     int pass = 0; //Vars
-    int resultOutPut = 0;
+    float resultOutPut = 0;
+    int point = 0;
+    float temp;
     char operation = ' ';
     std::string num1 = "";
     std::string num2 = "";
@@ -45,6 +48,7 @@ int main()
     sf::Texture minusT; minusT.loadFromFile("Sprites/minus.png");
     sf::Texture divideT; divideT.loadFromFile("Sprites/divide.png");
     sf::Texture multiplicationT; multiplicationT.loadFromFile("Sprites/multiplication.png");
+    sf::Texture pointT; pointT.loadFromFile("Sprites/point.png");
     sf::Texture resultT; resultT.loadFromFile("Sprites/result.png");
 
     sf::Sprite number0S; number0S.setTexture(number0T); //Creatting sprites and setting texturess
@@ -62,8 +66,9 @@ int main()
     sf::Sprite multiplicationS; multiplicationS.setTexture(multiplicationT);
     sf::Sprite divideS; divideS.setTexture(divideT);
     sf::Sprite resultS; resultS.setTexture(resultT);
+    sf::Sprite pointS; pointS.setTexture(pointT);
 
-    number0S.setPosition(sf::Vector2f(30.0f, 240.0f)); //Setting the positions for sprites
+    number0S.setPosition(sf::Vector2f(60.0f, 240.0f)); //Setting the positions for sprites
     number1S.setPosition(sf::Vector2f(0.0f, 60.0f)); 
     number2S.setPosition(sf::Vector2f(60.0f, 60.0f));
     number3S.setPosition(sf::Vector2f(120.0f, 60.0f));
@@ -73,11 +78,12 @@ int main()
     number7S.setPosition(sf::Vector2f(0.0f, 180.0f));
     number8S.setPosition(sf::Vector2f(60.0f, 180.0f));
     number9S.setPosition(sf::Vector2f(120.0f, 180.0f));
-    resultS.setPosition(sf::Vector2f(90.0f, 240.0f));
+    resultS.setPosition(sf::Vector2f(120.0f, 240.0f));
     plusS.setPosition(sf::Vector2f(180.0f, 60.0f));
     minusS.setPosition(sf::Vector2f(180.0f, 120.0f));
     divideS.setPosition(sf::Vector2f(180.0f, 240.0f));
     multiplicationS.setPosition(sf::Vector2f(180.0f, 180.0f));
+    pointS.setPosition(sf::Vector2f(0.0f, 240.0f));
 
     sf::Text num1SF, num2SF, operationSF, resultSF;
     sf::Font font;
@@ -199,6 +205,7 @@ int main()
                         std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(plusS, window)) {
+                        point = 0;
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
@@ -206,6 +213,7 @@ int main()
                         std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(minusS, window)) {
+                        point = 0;
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
@@ -213,6 +221,7 @@ int main()
                         std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(divideS, window)) {
+                        point = 0;
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
@@ -220,13 +229,28 @@ int main()
                         std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
                     if (CheckPressedButton(multiplicationS, window)) {
+                        point = 0;
                         resultOutPut = 0;
                         resultSF.setString("");
                         pass = 1;
                         operation = '*';
                         std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                     }
+                    if (CheckPressedButton(pointS, window)) {
+                        resultOutPut = 0;
+                        resultSF.setString("");
+                        if (point == 0) {
+                            if (pass == 0) {
+                                point = 1;
+                                num1 = num1 + ".";
+                            }
+                            else
+                                num2 = num2 + ".";
+                            std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
+                        }
+                    }
                     if (CheckPressedButton(resultS, window)) {
+                        point = 0;
                         if (num1 == " " && num2 == "") {
                             num1 = "0";
                             num2 = "0";
@@ -239,23 +263,23 @@ int main()
                         }
                         switch (operation) {
                         case '+':
-                            resultOutPut = std::stoi(num1) + std::stoi(num2);
+                            resultOutPut = std::stof(num1) + std::stof(num2);
                             break;
                         case '-':
-                            resultOutPut = std::stoi(num1) - std::stoi(num2);
+                            resultOutPut = std::stof(num1) - std::stof(num2);
                             break;
                         case '/':
-                            resultOutPut = std::stoi(num1) / std::stoi(num2);
+                            resultOutPut = std::stof(num1) / std::stof(num2);
                             break;
                         case '*':
-                            resultOutPut = std::stoi(num1) * std::stoi(num2);
+                            resultOutPut = std::stof(num1) * std::stof(num2);
                             break;
                         }
                         std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
                         resultSF.setString(std::to_string(resultOutPut));
                         pass = 0;
-                        num1 = " ";
-                        num2 = " ";
+                        num1 = "";
+                        num2 = "";
                         operation = ' ';
                     }
                 }
@@ -351,6 +375,7 @@ int main()
                     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Add) {
+                    point = 0;
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
@@ -358,6 +383,7 @@ int main()
                     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Subtract) {
+                    point = 0;
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
@@ -365,6 +391,7 @@ int main()
                     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Divide) {
+                    point = 0;
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
@@ -372,13 +399,28 @@ int main()
                     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
                 if (evnt.key.code == sf::Keyboard::Multiply) {
+                    point = 0;
                     resultOutPut = 0;
                     resultSF.setString("");
                     pass = 1;
                     operation = '*';
                     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
                 }
+                if (evnt.key.code == sf::Keyboard::Period) {
+                    resultOutPut = 0;
+                    resultSF.setString("");
+                    if (point == 0) {
+                        if (pass == 0) {
+                            point = 1;
+                            num1 = num1 + ".";
+                        }
+                        else
+                            num2 = num2 + ".";
+                        std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
+                    }
+                }
                 if (evnt.key.code == sf::Keyboard::Equal || evnt.key.code == sf::Keyboard::Enter) {
+                    point = 0;
                     if (num1 == "" && num2 == "") {
                         num1 = "0";
                         num2 = "0";
@@ -391,20 +433,26 @@ int main()
                     }
                     switch (operation) {
                     case '+':
-                        resultOutPut = std::stoi(num1) + std::stoi(num2);
+                        resultOutPut = std::stof(num1) + std::stof(num2);
                         break;
                     case '-':
-                        resultOutPut = std::stoi(num1) - std::stoi(num2);
+                        resultOutPut = std::stof(num1) - std::stof(num2);
                         break;
                     case '/':
-                        resultOutPut = std::stoi(num1) / std::stoi(num2);
+                        resultOutPut = std::stof(num1) / std::stof(num2);
                         break;
                     case '*':
-                        resultOutPut = std::stoi(num1) * std::stoi(num2);
+                        resultOutPut = std::stof(num1) * std::stof(num2);
                         break;
                     }
+                    if (modf(resultOutPut, &temp) == 0) {
+                        resultSF.setString(std::to_string((int)resultOutPut));
+                    }
+                    else {
+                        resultSF.setString(std::to_string(resultOutPut));
+                    }
+
                     std::cout << "The result: " << num1 << " " << operation << " " << num2 << " = " << resultOutPut << std::endl;
-                    resultSF.setString(std::to_string(resultOutPut));
                     pass = 0;
                     num1 = "";
                     num2 = "";
@@ -435,6 +483,7 @@ int main()
             window.draw(minusS);
             window.draw(divideS);
             window.draw(multiplicationS);
+            window.draw(pointS);
             window.draw(resultS);
             window.draw(num1SF);
             window.draw(operationSF);
