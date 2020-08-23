@@ -72,10 +72,13 @@ void PressOperator(sf::Sprite& sprite, sf::RenderWindow& window, char op) {
     std::cout << "First number: " << num1 << "\nSecond number: " << num2 << "\nArithmetic operation: " << operation << std::endl << std::endl;
 }
 
+void DefaultColor(sf::Sprite& sprite) {
+    sprite.setColor(sf::Color::White);
+}
+
 int main()
 {
-
-    sf::RenderWindow window(sf::VideoMode(240, 300), "Calculator", sf::Style::Default | sf::Style::Close); //Creating a window
+    sf::RenderWindow window(sf::VideoMode(240, 300), "Calculator", sf::Style::Titlebar | sf::Style::Close); //Creating a window
     sf::RectangleShape screenCalc; //Creating a shape
     sf::RectangleShape backgroundButtons;
     backgroundButtons.setFillColor(sf::Color::Black);
@@ -164,6 +167,24 @@ int main()
         sf::Event evnt;
         while (window.pollEvent(evnt)) { //To make close button active
             switch (evnt.type) {
+            case sf::Event::MouseLeft:
+                DefaultColor(number0S);
+                DefaultColor(number1S);
+                DefaultColor(number2S);
+                DefaultColor(number3S);
+                DefaultColor(number4S);
+                DefaultColor(number5S);
+                DefaultColor(number6S);
+                DefaultColor(number7S);
+                DefaultColor(number8S);
+                DefaultColor(number9S);
+                DefaultColor(plusS);
+                DefaultColor(minusS);
+                DefaultColor(divideS);
+                DefaultColor(multiplicationS);
+                DefaultColor(resultS);
+                DefaultColor(pointS);
+                break;
             case sf::Event::Closed:
                 window.close();
                 break;
