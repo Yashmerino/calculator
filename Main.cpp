@@ -50,6 +50,10 @@ int main()
     sf::Texture multiplicationT; multiplicationT.loadFromFile("Sprites/multiplication.png");
     sf::Texture pointT; pointT.loadFromFile("Sprites/point.png");
     sf::Texture resultT; resultT.loadFromFile("Sprites/result.png");
+    number0T.setSmooth(true); number4T.setSmooth(true); number8T.setSmooth(true); resultT.setSmooth(true);
+    number1T.setSmooth(true); number5T.setSmooth(true); number9T.setSmooth(true); divideT.setSmooth(true);
+    number2T.setSmooth(true); number6T.setSmooth(true); plusT.setSmooth(true); multiplicationT.setSmooth(true);
+    number3T.setSmooth(true); number7T.setSmooth(true); minusT.setSmooth(true); pointT.setSmooth(true);
 
     sf::Sprite number0S; number0S.setTexture(number0T); //Creatting sprites and setting texturess
     sf::Sprite number1S; number1S.setTexture(number1T);
